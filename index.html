@@ -69,6 +69,12 @@
     </div>
 </section>
 
+<!-- Botón volver arriba -->
+<button id="scrollToTop" class="scroll-top-btn" aria-label="Volver arriba">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
 
 
   <!-- HISTORIA -->
@@ -161,59 +167,87 @@
     </div>
   </section>
   
-
   <!-- RSVP -->
-  <section id="rsvp">
-    <div class="container">
-      <h2 class="section-titleR" data-animate>Confirmación (RSVP)</h2>
-      <p class="lead" data-animate>Por favor confirma tu asistencia antes del <strong>15 de abril de 2026</strong>.</p>
+<section id="rsvp">
+  <div class="container">
+    <h2 class="section-titleR" data-animate>Confirmación</h2>
+    <p class="lead" data-animate>Por favor confirma antes del <strong>15 de abril de 2026</strong></p>
 
-      <form id="rsvpForm" novalidate data-animate>
-        <div class="grid-2">
-          <div>
-            <label for="nombre">Nombre completo*</label>
-            <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre y apellido">
-          </div>
-          <div>
-            <label for="email">Correo electrónico*</label>
-            <input id="email" name="email" type="email" required placeholder="tucorreo@ejemplo.com">
-          </div>
+    <form id="rsvpForm" novalidate data-animate>
+      
+      <!-- Pregunta principal primero -->
+      <div class="rsvp-question">
+        <label>¿Podrás acompañarnos?</label>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="confirmacion" value="Sí" required>
+            <span class="radio-content">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              <span>¡Sí, asistiré!</span>
+            </span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="confirmacion" value="No">
+            <span class="radio-content">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>No podré asistir</span>
+            </span>
+          </label>
         </div>
+      </div>
 
-        <div class="grid-2">
-          <div>
-            <label for="telefono">Teléfono</label>
-            <input id="telefono" name="telefono" type="tel" placeholder="+502 0000-0000">
-          </div>
-          <div>
-            <label for="invitados">Número de invitados (incluyéndote)*</label>
-            <input id="invitados" name="invitados" type="number" min="1" max="10" required value="1">
-          </div>
+      <!-- Campos básicos -->
+      <div class="form-group">
+        <input id="nombre" name="nombre" type="text" required placeholder=" ">
+        <label for="nombre">Nombre completo*</label>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <input id="email" name="email" type="email" required placeholder=" ">
+          <label for="email">Correo electrónico*</label>
         </div>
-
-        <div>
-          <label for="comentario">Comentario (alergias, restricciones, etc.)</label>
-          <textarea id="comentario" name="comentario" placeholder="Cuéntanos si necesitas algún detalle especial"></textarea>
+        <div class="form-group">
+          <input id="telefono" name="telefono" type="tel" placeholder=" ">
+          <label for="telefono">Teléfono</label>
         </div>
+      </div>
 
-        <div>
-          <label for="confirmacion">¿Asistirás?*</label>
-          <select id="confirmacion" name="confirmacion" required>
-            <option value="">Selecciona una opción</option>
-            <option value="Sí">Sí, ahí estaré</option>
-            <option value="No">No podré asistir</option>
-          </select>
+      <!-- Número de invitados (solo si asiste) -->
+      <div class="form-group" id="guestCountGroup" style="display:none;">
+        <label for="invitados" class="static-label">¿Cuántas personas asistirán?</label>
+        <div class="number-input">
+          <button type="button" class="num-btn" id="decreaseBtn">-</button>
+          <input id="invitados" name="invitados" type="number" min="1" max="10" value="1" readonly>
+          <button type="button" class="num-btn" id="increaseBtn">+</button>
         </div>
+      </div>
 
-        <div class="actions">
-          <button class="btn" type="submit" id="submitBtn">Enviar confirmación</button>
-          <span class="note">Tus datos se guardarán para fines organizativos.</span>
-        </div>
-        <div class="status" id="status" aria-live="polite"></div>
-      </form>
-    </div>
-  </section>
+      <!-- Comentarios (solo si asiste) -->
+      <div class="form-group" id="commentGroup" style="display:none;">
+        <textarea id="comentario" name="comentario" placeholder=" " rows="3"></textarea>
+        <label for="comentario">Alergias o necesidades especiales</label>
+      </div>
 
+      <button class="btn-submit" type="submit" id="submitBtn">
+        <span>Enviar confirmación</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <div class="status" id="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+ 
   <footer>
     <div class="container">
       <p>Con cariño, Ana & José</p>
@@ -225,161 +259,7 @@
   <dialog id="lightbox" style="border:none;border-radius:12px;padding:0;max-width:95vw">
     <img id="lightboxImg" src="" alt="" style="width:100%;height:auto;display:block">
   </dialog>
-
-  <script>
-    // ====== CONFIGURACIÓN ======
-    // Fecha/hora exacta (ajusta la hora real si difiere). Viernes 1 mayo 2026, 5:00pm (hora local)
-    const WEDDING_ISO = "2026-05-01T17:00:00";
-
-    // Maps del Club Campestre Pinula (ajusta con tu link real)
-    const MAPS_URL = "https://maps.app.goo.gl/pm6p61FHQidm5iiN7"; 
-    const MAP_EMBED_SRC = "https://maps.google.com/maps?q=Club+Campestre+Pinula&z=15&output=embed";
-
-    // Endpoint Google Apps Script o Google Forms:
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/XXXXXXXX/exec";
-
-    const EVENT_TITLE = "Boda — Ana & José";
-    const EVENT_LOCATION = "Hacienda Nueva Country Club San José Pinula, Guatemala";
-    const EVENT_DESCRIPTION = "¡Te esperamos para celebrar con nosotros!";
-    // ===========================
-
-    // Crossfade del HERO (cada 6s)
-    const heroImgs = document.querySelectorAll('.hero .bg');
-    let heroIdx = 0;
-    if (heroImgs.length > 1) {
-      setInterval(() => {
-        heroImgs[heroIdx].classList.remove('active');
-        heroIdx = (heroIdx + 1) % heroImgs.length;
-        heroImgs[heroIdx].classList.add('active');
-      }, 6000);
-    }
-
-    // Cuenta regresiva
-    const target = new Date(WEDDING_ISO).getTime();
-    const cdDays = document.getElementById("cd-days");
-    const cdHours = document.getElementById("cd-hours");
-    const cdMins = document.getElementById("cd-mins");
-    const cdSecs = document.getElementById("cd-secs");
-    function updateCountdown(){
-      const now = Date.now();
-      let diff = Math.max(0, target - now);
-      const d = Math.floor(diff / (1000*60*60*24)); diff -= d*24*60*60*1000;
-      const h = Math.floor(diff / (1000*60*60));     diff -= h*60*60*1000;
-      const m = Math.floor(diff / (1000*60));        diff -= m*60*1000;
-      const s = Math.floor(diff / 1000);
-      cdDays.textContent  = String(d);
-      cdHours.textContent = String(h).padStart(2,'0');
-      cdMins.textContent  = String(m).padStart(2,'0');
-      cdSecs.textContent  = String(s).padStart(2,'0');
-    }
-    updateCountdown(); setInterval(updateCountdown, 1000);
-
-    // Animaciones al hacer scroll
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries,obs)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('in-view');
-            obs.unobserve(e.target);
-          }
-        });
-      }, {threshold:.18, rootMargin:"0px 0px -10% 0px"});
-      document.querySelectorAll('[data-animate]').forEach(el=> observer.observe(el));
-    } else {
-      document.querySelectorAll('[data-animate]').forEach(el=> el.classList.add('in-view'));
-    }
-
-    // Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    document.querySelectorAll('[data-lightbox]').forEach(a=>{
-      a.addEventListener('click', (ev)=>{
-        ev.preventDefault();
-        lbImg.src = a.href;
-        lb.showModal();
-      });
-    });
-    lb.addEventListener('click', ()=> lb.close());
-
-    // Mapa
-    document.getElementById('mapLink').href = MAPS_URL;
-    document.getElementById('mapEmbed').src = MAP_EMBED_SRC;
-
-    // Agregar al calendario (.ics)
-    document.getElementById('addToCalendarBtn').addEventListener('click', ()=>{
-      const start = new Date(WEDDING_ISO);
-      const end   = new Date(start.getTime() + 6*60*60*1000);
-      const toICS = (d)=> d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-      const ics = [
-        "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Wedding//RSVP//ES","BEGIN:VEVENT",
-        `DTSTAMP:${toICS(new Date())}`,
-        `DTSTART:${toICS(start)}`,
-        `DTEND:${toICS(end)}`,
-        `SUMMARY:${EVENT_TITLE}`,
-        `LOCATION:${EVENT_LOCATION}`,
-        `DESCRIPTION:${EVENT_DESCRIPTION}`,
-        "END:VEVENT","END:VCALENDAR"
-      ].join("\r\n");
-      const blob = new Blob([ics], {type: "text/calendar;charset=utf-8"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = "boda.ics"; a.click();
-      setTimeout(()=>URL.revokeObjectURL(url), 1500);
-    });
-
-    // Envío RSVP
-    const form = document.getElementById('rsvpForm');
-    const status = document.getElementById('status');
-    const submitBtn = document.getElementById('submitBtn');
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      status.textContent = "";
-      if(!form.checkValidity()){
-        status.textContent = "Por favor completa los campos obligatorios.";
-        form.reportValidity();
-        return;
-      }
-      submitBtn.disabled = true; submitBtn.textContent = "Enviando…";
-
-      const data = new URLSearchParams({
-        nombre: form.nombre.value.trim(),
-        email: form.email.value.trim(),
-        telefono: form.telefono.value.trim(),
-        invitados: form.invitados.value,
-        comentario: form.comentario.value.trim(),
-        confirmacion: form.confirmacion.value
-      });
-
-      try{
-        const res = await fetch(RSVP_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: data.toString(),
-          mode: "cors"
-        });
-        if(res.ok){
-          status.textContent = "¡Gracias! Tu confirmación fue recibida.";
-          form.reset();
-        }else{
-          status.textContent = "Hubo un problema al enviar. Intenta nuevamente.";
-        }
-      }catch(err){
-        console.error(err);
-        status.textContent = "No se pudo conectar. Revisa tu internet o el endpoint.";
-      }finally{
-        submitBtn.disabled = false; submitBtn.textContent = "Enviar confirmación";
-      }
-    });
-
-  function copyToClipboard() {
-    const accountNumber = document.getElementById("account-number").textContent;
-    navigator.clipboard.writeText(accountNumber).then(function() {
-      alert("Número de cuenta copiado: " + accountNumber);
-    }, function(err) {
-      alert("Error al copiar el número de cuenta: " + err);
-    });
-  }
-
-  </script>
+  <script src="js/javascript.js" data-nscript="lazyOnload"></script>
 
 </body>
 </html>

@@ -1,661 +1,816 @@
 :root{
-    /* Paleta wedding */
-    --bg:#EFE5D2;        /* Pale Champagne */
-    --bg-2:#D9DEE5;      /* Soft Silver */
-    --text:#1A2333;      /* Deep Ink Blue */
-    --muted:#9AA9B8;     /* Cool Blue Grey */
-    --primary:#22304A;   /* Evening Navy */
-    --accent:#EFE5D2;    /* Pale Champagne */
-    --accent-2:#D9DEE5;  /* Soft Silver */
-  
-    /* UI */
-    --white:#ffffff;
-    --shadow:0 12px 30px rgba(26,35,51,.18);
-    --radius:16px;
-    --radius-sm:12px;
-    --max:1100px;
-  }
-  
-  *{box-sizing:border-box}
-  html,body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    line-height:1.6
-  }
-  img{max-width:100%;height:auto;display:block}
-  a{color:var(--primary);text-decoration:none}
-  .container{max-width:var(--max);margin:0 auto;padding:0 20px}
-  
-  /* NAV */
-  header.nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(239,229,210,.85);
-    backdrop-filter:saturate(120%) blur(8px);
-    border-bottom:1px solid rgba(26,35,51,.08)
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{font-family:"Playfair Display",serif;font-weight:600;font-size:20px;letter-spacing:.5px}
-  nav a{margin-left:16px;padding:8px 12px;border-radius:999px;transition:.25s ease}
-  nav a:hover{background:var(--white);box-shadow:var(--shadow)}
-  
-  /* HERO (imagen + overlay elegante) */
-  .hero{
-    position:relative;
-    min-height:78vh;
-    display:grid;
-    place-items:center;
-    overflow:hidden;
-    color:var(--white);
-  }
-  
-  /* Imagen de fondo (usa: <img class="bg-image" ...>) */
-  .hero .bg-image{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:0;
-    filter:saturate(110%) contrast(105%);
-  }
-  
-  
-  
-  /* Overlay */
-  .hero::before{
-    background: linear-gradient(
-      180deg,
-      rgba(26,35,51,.50),  /* Ajusta la opacidad aquí */
-      rgba(26,35,51,.78)   /* Y aquí */
-    );
-  }
-  
-  
-  
-  /* Contenido */
-  .hero .content{position:relative;z-index:2;text-align:center;padding:40px 16px}
-  .couple {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(40px, 8vw, 80px);
-    line-height: 1.1;
-    margin: 0 0 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);  /* Sombra suave para resaltar */
-  }  
-  .date{font-size:18px;letter-spacing:2px;opacity:.92;margin-bottom:18px}
-  .divider{width:120px;height:1px;margin:18px auto;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-  .countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .cd-box{
-    background:rgba(255,255,255,.14);
-    backdrop-filter:blur(8px);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:12px;
-    width:110px;
-    padding:12px 10px
-  }
-  .cd-num{font-size:28px;font-weight:700}
-  .cd-label{font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.9}
-  
-  /* SECCIONES */
-  section{padding:72px 0}
-  .section-title{
-    text-align:center;margin:0 0 28px;
-    font-family:"Playfair Display",serif;
-    font-size:clamp(24px,4.5vw,40px);
-    color:var(--white)
-  }
-  .lead{max-width:800px;margin:0 auto 22px;color:var(--muted);text-align:center}
-  
-  /* Historia */
-  .history{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
-  .history-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
-  .history .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  .history .card img{height:100%;object-fit:cover}
-  .history .story{padding:22px}
-  .timeline{padding-left:0;list-style:none;margin:0}
-  .timeline li{position:relative;padding-left:28px;margin:14px 0}
-  .timeline li::before{content:"";position:absolute;left:8px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--primary)}
-  
-  /* Álbum */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-  .gallery-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(26,35,51,.10)}
-  .gallery-grid img{transition:transform .4s ease}
-  .gallery-grid a:hover img{transform:scale(1.05)}
-  
-  /* Detalles */
-  .details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-  .detail{background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow);padding:18px}
-  .detail {
-    background: rgba(255, 255, 255, 0.7); /* Fondo blanco con 70% de opacidad */
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow);
-    padding: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .badge{
-    display:inline-block;
-    padding:4px 10px;
-    border-radius:999px;
-    background:rgba(34,48,74,.10);
-    color:var(--primary);
-    font-size:12px;
-    font-weight:600
-  }
-  .map{margin-top:18px;border:0;width:100%;height:320px;border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
-  
-  /* RSVP */
-  form{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;max-width:760px;margin:0 auto}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  label{display:block;font-size:14px;margin:2px 0 6px;color:var(--primary)}
-  input,select,textarea{
-    width:100%;
-    padding:12px 12px;
-    border:1px solid rgba(26,35,51,.18);
-    border-radius:10px;
-    background:#fff;
-    font-size:15px
-  }
-  input:focus,select:focus,textarea:focus{
-    outline:none;
-    border-color:rgba(34,48,74,.55);
-    box-shadow:0 0 0 4px rgba(154,169,184,.25);
-  }
-  textarea{min-height:110px;resize:vertical}
-  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;align-items:center}
+  /* Paleta wedding */
+  --bg:#EFE5D2;        /* Pale Champagne */
+  --bg-2:#D9DEE5;      /* Soft Silver */
+  --text:#1A2333;      /* Deep Ink Blue */
+  --muted:#9AA9B8;     /* Cool Blue Grey */
+  --primary:#22304A;   /* Evening Navy */
+  --accent:#EFE5D2;    /* Pale Champagne */
+  --accent-2:#D9DEE5;  /* Soft Silver */
 
-  /* RSVP Section (Fondo con color Deep Ink Blue) */
-#rsvp {
-  background: var(--primary);  /* Fondo Deep Ink Blue */
-  padding: 40px 0;
+  /* UI */
+  --white:#ffffff;
+  --shadow:0 12px 30px rgba(26,35,51,.18);
+  --radius:16px;
+  --radius-sm:12px;
+  --max:1100px;
+}
+html {
+  scroll-behavior: smooth;
+}
+*{box-sizing:border-box}
+html,body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+line-height:1.6
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* ========================================
+ NAV
+ ======================================== */
+header.nav{
+position:sticky;top:0;z-index:50;
+background:rgba(239,229,210,.85);
+backdrop-filter:saturate(120%) blur(8px);
+border-bottom:1px solid rgba(26,35,51,.08)
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:"Playfair Display",serif;font-weight:600;font-size:20px;letter-spacing:.5px}
+nav a{margin-left:16px;padding:8px 12px;border-radius:999px;transition:.25s ease}
+nav a:hover{background:var(--white);box-shadow:var(--shadow)}
+
+/* ========================================
+ HERO
+ ======================================== */
+.hero{
+position:relative;
+min-height:78vh;
+display:grid;
+place-items:center;
+overflow:hidden;
+color:var(--white);
 }
 
-form {
-  background: var(--white);  /* Mantener el fondo del formulario blanco */
-  color: var(--text);  /* Asegurar que el texto sea oscuro para buen contraste */
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  max-width: 760px;
-  margin: 0 auto;
+.hero .bg-image{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:0;
+filter:saturate(110%) contrast(105%);
 }
 
-  
-  /* Botones (paleta wedding) */
-  .btn{
-    appearance:none;border:0;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:var(--primary);
-    padding:12px 18px;
-    border-radius:999px;
-    cursor:pointer;
-    font-weight:700;
-    box-shadow:var(--shadow);
-    transition:transform .15s ease, filter .3s ease
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(26,35,51,0),rgba(26,35,51,.40));
+  z-index:1;
+}
+
+.hero .content{
+position:relative;
+z-index:2;
+text-align:center;
+padding:40px 16px;
+}
+
+.couple{
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:"Playfair Display",serif;
+font-size:clamp(40px,8vw,80px);
+line-height:1.1;
+margin:0 0 20px;
+text-transform:uppercase;
+font-weight:700;
+text-shadow:2px 2px 5px rgba(0,0,0,0.3);
+color:var(--accent-2);
+}
+
+.couple img{
+width:35px;
+height:auto;
+margin-right:12px;
+vertical-align:middle;
+}
+
+.date{
+font-size:18px;
+letter-spacing:2px;
+opacity:.92;
+margin-bottom:18px;
+}
+
+.divider{
+width:120px;
+height:1px;
+margin:18px auto;
+background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+
+.countdown{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cd-box{
+background:rgba(255,255,255,.14);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,.25);
+border-radius:12px;
+width:110px;
+padding:12px 10px
+}
+.cd-num{font-size:28px;font-weight:700}
+.cd-label{font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.9}
+
+.save-the-date{
+font-family:"Playfair Display",serif;
+font-size:32px;
+font-weight:700;
+text-align:center;
+margin-top:20px;
+color:var(--primary);
+text-transform:uppercase;
+letter-spacing:2px;
+}
+
+/* ========================================
+ SECCIONES
+ ======================================== */
+section{padding:72px 0}
+
+.section-title{
+text-align:center;
+margin:0 0 28px;
+font-family:"Playfair Display",serif;
+font-size:clamp(24px,4.5vw,40px);
+color:var(--primary);
+}
+
+.section-titleD,
+.section-titleR{
+text-align:center;
+margin:0 0 28px;
+font-family:"Playfair Display",serif;
+font-size:clamp(24px,4.5vw,40px);
+color:var(--white);
+}
+
+.lead{
+max-width:800px;
+margin:0 auto 22px;
+color:var(--muted);
+text-align:center;
+}
+
+/* ========================================
+ HISTORIA
+ ======================================== */
+.history{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+.history-grid{
+display:grid;
+grid-template-columns:1.1fr 1fr;
+gap:24px;
+align-items:center;
+}
+.history .card{
+background:var(--white);
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+overflow:hidden;
+}
+.history .card img{
+height:100%;
+object-fit:cover;
+}
+.history .story{padding:22px}
+.timeline{padding-left:0;list-style:none;margin:0}
+.timeline li{
+position:relative;
+padding-left:28px;
+margin:14px 0;
+}
+.timeline li::before{
+content:"";
+position:absolute;
+left:8px;
+top:8px;
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--primary);
+}
+
+/* ========================================
+ ÁLBUM
+ ======================================== */
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:14px;
+}
+.gallery-grid a{
+display:block;
+border-radius:12px;
+overflow:hidden;
+border:1px solid rgba(26,35,51,.10);
+}
+.gallery-grid img{transition:transform .4s ease}
+.gallery-grid a:hover img{transform:scale(1.05)}
+
+/* ========================================
+ DETALLES
+ ======================================== */
+#detalles{
+position:relative;
+background-image:url('http://127.0.0.1:5500/assets/album/img_10.jpeg');
+background-size:cover;
+background-position:center;
+padding:80px 0;
+min-height:400px;
+}
+
+#detalles::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(26,35,51,0.4);
+z-index:-1;
+}
+
+.details-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+}
+
+.detail{
+background:rgba(255,255,255,0.8);
+border-radius:var(--radius-sm);
+box-shadow:var(--shadow);
+padding:18px;
+margin-bottom:20px;
+color:var(--primary);
+}
+
+.detail h3,
+.detail p{
+color:var(--primary);
+}
+
+.badge{
+display:inline-block;
+padding:4px 10px;
+border-radius:999px;
+background:rgba(34,48,74,.10);
+color:var(--primary);
+font-size:12px;
+font-weight:600;
+}
+
+.map{
+margin-top:18px;
+border:0;
+width:100%;
+height:320px;
+border-radius:12px;
+box-shadow:var(--shadow);
+overflow:hidden;
+}
+
+#account-number{
+font-weight:bold;
+color:var(--primary);
+font-size:18px;
+}
+
+/* ========================================
+   RSVP MODERNO
+   ======================================== */
+   #rsvp form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 680px;
+    margin: 0 auto;
   }
-  .btn:hover{transform:translateY(-1px);filter:saturate(105%)}
   
-  /* Botón secundario */
-  .btn.secondary{
-    background:transparent;
-    color:var(--white);
-    border:1px solid rgba(255,255,255,.60);
-    box-shadow:none
+  /* Pregunta principal con radio cards */
+  .rsvp-question {
+    margin-bottom: 32px;
   }
   
-  .note{color:var(--muted);font-size:14px}
-  .status{min-height:22px;font-size:14px}
-  .status[aria-live]{margin-top:8px}
-  
-  /* Footer */
-  footer{padding:36px 0;color:rgba(26,35,51,.70);text-align:center}
-  
-  /* Animaciones en scroll */
-  [data-animate]{opacity:0;transform:translateY(16px);transition:all .6s ease}
-  .in-view{opacity:1 !important;transform:translateY(0) !important}
-  
-  /* Responsive */
-  @media (max-width: 920px){
-    .history-grid{grid-template-columns:1fr}
-    header.nav .brand{font-size:18px}
-    .cd-box{width:96px}
-    .grid-2{grid-template-columns:1fr}
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;animation:none !important}
-  }
-  @media (max-width: 768px){
-    .hero{
-      min-height: 85vh;
-    }
-  
-    .hero .bg-image{
-      object-position: 50% 20%;
-    }
-  }
-  .ring-icon {
-    width: 40px;  /* Ajustamos el tamaño del anillo */
-    height: auto;
-    margin-right: 15px;  /* Mayor espacio entre el anillo y el texto */
-    vertical-align: middle;
+  .rsvp-question > label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 16px;
+    text-align: center;
   }
   
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
   
-  .hero .content {
+  .radio-card {
     position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px 16px;
+    cursor: pointer;
+    margin: 0;
   }
   
-  .couple {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    font-family: "Playfair Display", serif;
-    font-size: clamp(40px, 8vw, 80px);
-    color: var(--accent-2); /* Soft Silver para un color más suave y destacado */
-    text-transform: uppercase;
-  }
-  
-  .couple img {
-    width: 35px;  /* Tamaño ajustable */
-    height: auto;
-    margin-right: 12px;
-    vertical-align: middle;
-  }  
-  
-  .save-the-date {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-    color: var(--primary); /* Usamos el color Evening Navy para resaltar */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }  
-  
- /* Fondo de la sección de detalles */
-#detalles {
-  position: relative;
-  background-image: url('http://127.0.0.1:5500/assets/album/img_10.jpeg');
-  background-size: cover;
-  background-position: center;
-  padding: 80px 0;
-  min-height: 400px;
-}
-  
-  #detalles::before {
-    content: "";
+  .radio-card input[type="radio"] {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(26, 35, 51, 0.4); /* Capa oscura para mejorar legibilidad */
-    z-index: -1;
-  }
-  .detail {
-    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow);
-    padding: 18px;
-    margin-bottom: 20px;
-    color: var(--primary); /* Color azul oscuro para el texto */
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
   
-  .detail h3, .detail p {
-    color: var(--primary); /* Hacer los títulos y los párrafos de color azul oscuro */
+  .radio-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    border: 2px solid rgba(26, 35, 51, 0.15);
+    border-radius: 16px;
+    background: white;
+    transition: all 0.3s ease;
   }
-  /* Botón "Copiar" */
-.copy-btn {
-  background-color: var(--primary);  /* Color de fondo azul oscuro */
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.copy-btn:hover {
-  background-color: var(--accent-2); /* Cambio de color al pasar el cursor */
-}
   
-  /* Mejorar la visibilidad de la copia */
-  #account-number {
+  .radio-content svg {
+    color: var(--muted);
+    transition: all 0.3s ease;
+  }
+  
+  .radio-content span {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 15px;
+  }
+  
+  .radio-card input[type="radio"]:checked + .radio-content {
+    border-color: var(--primary);
+    background: rgba(34, 48, 74, 0.05);
+    box-shadow: 0 4px 12px rgba(34, 48, 74, 0.1);
+  }
+  
+  .radio-card input[type="radio"]:checked + .radio-content svg {
+    color: var(--primary);
+    transform: scale(1.1);
+  }
+  
+  /* Inputs flotantes modernos */
+  .form-group {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 16px 16px 16px 16px;
+    border: 2px solid rgba(26, 35, 51, 0.12);
+    border-radius: 12px;
+    background: #fff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group label {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: var(--muted);
+    font-size: 15px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 4px;
+  }
+  
+  .form-group label.static-label {
+    position: static;
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  
+  /* Efecto de label flotante */
+  .form-group input:focus,
+  .form-group input:not(:placeholder-shown),
+  .form-group textarea:focus,
+  .form-group textarea:not(:placeholder-shown) {
+    border-color: var(--primary);
+    outline: none;
+  }
+  
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  /* Contador de invitados */
+  .number-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px;
+    background: rgba(34, 48, 74, 0.05);
+    border-radius: 12px;
+  }
+  
+  .num-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .num-btn:hover {
+    background: var(--accent-2);
+    color: var(--primary);
+    transform: scale(1.1);
+  }
+  
+  .num-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .number-input input {
+    width: 60px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 24px;
     font-weight: bold;
     color: var(--primary);
-    font-size: 18px;
+    padding: 8px;
   }
   
- /* Título de la sección */
-.section-title {
-  color: var(--primary); /* Color azul oscuro para el título */
-  font-family: "Playfair Display", serif;
-  font-size: clamp(24px, 4.5vw, 40px);
-  text-align: center;
-  margin: 0 0 28px;
-}
-/* Estilo para los botones */
-.btn.secondary {
-  background-color: var(--primary);  /* Color de fondo azul oscuro */
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn.secondary:hover {
-  background-color: var(--accent-2);  /* Cambio de color al pasar el cursor */
-}
-
-.section-titleD {
-  color: var(--white); /* Cambiado a blanco */
-  font-family: "Playfair Display", serif;
-  font-size: clamp(24px, 4.5vw, 40px);
-  text-align: center;
-  margin: 0 0 28px;
-}
-
-.section-titleR {
-  color: var(--white); /* Cambiado a blanco */
-  font-family: "Playfair Display", serif;
-  font-size: clamp(24px, 4.5vw, 40px);
-  text-align: center;
-  margin: 0 0 28px;
-}
-
-/* Mejoras para mobile */
-@media (max-width: 768px) {
-  /* Reducir altura del hero */
-  .hero {
-    min-height: 60vh; /* Reducido de 85vh */
+  /* Botón de envío moderno */
+  .btn-submit {
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), #1a2840);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    margin-top: 32px;
+    box-shadow: 0 4px 12px rgba(34, 48, 74, 0.2);
   }
   
-  /* Reducir padding de todas las secciones */
-  section {
-    padding: 40px 0; /* Reducido de 72px */
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34, 48, 74, 0.3);
   }
   
-  /* Ajustes específicos para Historia */
-  .history {
-    padding: 32px 0;
+  .btn-submit:active {
+    transform: translateY(0);
   }
   
-  .history .story {
-    padding: 16px; /* Reducido de 22px */
+  .btn-submit svg {
+    transition: transform 0.3s ease;
   }
   
-  /* Ajustes para el grid de historia */
-  .history-grid {
-    gap: 16px; /* Reducido de 24px */
+  .btn-submit:hover svg {
+    transform: translateX(4px);
   }
   
-  /* Ajustes para galería/álbum */
-  .gallery-grid {
-    gap: 10px; /* Reducido de 14px */
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Columnas más pequeñas */
+  /* Status messages */
+  .status {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
   }
   
-  /* Reducir títulos de sección */
-  .section-title,
-  .section-titleD,
-  .section-titleR {
-    margin: 0 0 20px; /* Reducido de 28px */
-    font-size: clamp(22px, 5vw, 32px);
+  .status:not(:empty) {
+    background: rgba(34, 48, 74, 0.1);
+    color: var(--primary);
   }
   
-  /* Reducir espaciado del contenido del hero */
-  .hero .content {
-    padding: 24px 16px; /* Reducido de 40px */
-  }
-  
-  /* Ajustar countdown */
-  .countdown {
-    gap: 8px; /* Reducido de 12px */
-  }
-  
-  .cd-box {
-    width: 80px; /* Más pequeño que 96px */
-    padding: 10px 8px;
-  }
-  
-  .cd-num {
-    font-size: 24px; /* Reducido de 28px */
-  }
-  
-  /* Detalles section */
-  #detalles {
-    padding: 40px 0; /* Reducido de 80px */
-  }
-  
-  .details-grid {
-    gap: 12px; /* Reducido de 18px */
-  }
-  
-  .detail {
-    padding: 14px; /* Reducido de 18px */
-    margin-bottom: 12px; /* Reducido de 20px */
-  }
-  
-  /* RSVP section */
-  #rsvp {
-    padding: 32px 0; /* Reducido de 40px */
-  }
-  
-  form {
-    padding: 16px; /* Reducido de 20px */
-  }
-}
-
-/* Para pantallas muy pequeñas */
-@media (max-width: 480px) {
-  .hero {
-    min-height: 55vh;
-  }
-  
-  section {
-    padding: 28px 0;
-  }
-  
-  .couple {
-    font-size: clamp(32px, 10vw, 60px);
-  }
-  
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr); /* Forzar 2 columnas */
-  }
-}
-
-/* ============================================
-   CORRECCIONES PARA MOBILE - HISTORIA Y ÁLBUM
-   ============================================ */
-
-   @media (max-width: 768px) {
-    /* HERO - Reducir altura */
-    .hero {
-      min-height: 60vh;
+  /* Responsive */
+  @media (max-width: 768px) {
+    #rsvp form {
+      padding: 24px;
+      border-radius: 16px;
     }
-    
-    .hero .content {
-      padding: 24px 16px;
-    }
-    
-    /* SECCIONES - Reducir padding general */
-    section {
-      padding: 40px 0;
-    }
-    
-    /* ========== HISTORIA ========== */
-    .history {
-      padding: 32px 0;
-    }
-    
-    /* Grid en una columna */
-    .history-grid {
+  
+    .radio-group {
       grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 20px; /* Espacio entre los dos grids */
     }
-    
-    /* Limitar altura de las imágenes */
-    .history .card {
-      overflow: hidden;
-    }
-    
-    .history .card img {
-      width: 100%;
-      height: 280px; /* Altura fija controlada */
-      object-fit: cover;
-      object-position: center;
-    }
-    
-    /* Texto más compacto */
-    .history .card.story {
-      padding: 16px;
-    }
-    
-    .history .story h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-    
-    .timeline li {
-      padding-left: 20px;
-      margin: 10px 0;
-      font-size: 14px;
-    }
-    
-    /* ========== ÁLBUM ========== */
-    #album {
-      padding: 32px 0;
-    }
-    
-    .gallery-grid {
-      gap: 8px;
-      grid-template-columns: repeat(2, 1fr); /* 2 columnas en mobile */
-    }
-    
-    .gallery-grid a {
-      aspect-ratio: 1; /* Cuadrados perfectos */
-      overflow: hidden;
-    }
-    
-    .gallery-grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    /* ========== TÍTULOS Y ESPACIADOS ========== */
-    .section-title,
-    .section-titleD,
-    .section-titleR {
-      margin: 0 0 16px;
-      font-size: clamp(24px, 6vw, 32px);
-    }
-    
-    .lead {
-      margin: 0 auto 20px;
-      font-size: 15px;
-    }
-    
-    /* ========== COUNTDOWN ========== */
-    .countdown {
-      gap: 8px;
-    }
-    
-    .cd-box {
-      width: 75px;
-      padding: 10px 6px;
-    }
-    
-    .cd-num {
-      font-size: 22px;
-    }
-    
-    .cd-label {
-      font-size: 11px;
-    }
-    
-    /* ========== DETALLES ========== */
-    #detalles {
-      padding: 40px 0;
-    }
-    
-    .details-grid {
-      gap: 12px;
-    }
-    
-    .detail {
-      padding: 14px;
-      margin-bottom: 10px;
-    }
-    
-    /* ========== RSVP ========== */
-    #rsvp {
-      padding: 32px 0;
-    }
-    
-    form {
-      padding: 16px;
-    }
-    
+  
     .grid-2 {
       grid-template-columns: 1fr;
     }
-    
-    /* ========== SAVE THE DATE ========== */
-    .save-the-date {
-      font-size: 24px;
-      margin-top: 16px;
+  
+    .rsvp-question > label {
+      font-size: 16px;
     }
   }
+
+/* ========================================
+ FOOTER
+ ======================================== */
+footer{
+padding:36px 0;
+color:rgba(26,35,51,.70);
+text-align:center;
+}
+
+/* ========================================
+ ANIMACIONES
+ ======================================== */
+[data-animate]{
+opacity:0;
+transform:translateY(16px);
+transition:all .6s ease;
+}
+.in-view{
+opacity:1 !important;
+transform:translateY(0) !important;
+}
+
+/* ========================================
+ RESPONSIVE - TABLET
+ ======================================== */
+@media (max-width: 920px){
+.history-grid{grid-template-columns:1fr}
+header.nav .brand{font-size:18px}
+.cd-box{width:96px}
+.grid-2{grid-template-columns:1fr}
+}
+
+/* ========================================
+ RESPONSIVE - MOBILE
+ ======================================== */
+@media (max-width: 768px){
+/* HERO */
+.hero{
+  min-height:60vh;
+}
+
+.hero .bg-image{
+  object-position:50% 20%;
+}
+
+.hero .content{
+  padding:24px 16px;
+}
+
+/* SECCIONES */
+section{
+  padding:40px 0;
+}
+
+/* HISTORIA */
+.history{
+  padding:32px 0;
+}
+
+.history-grid{
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.history .card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  object-position:center;
+}
+
+.history .card.story{
+  padding:16px;
+}
+
+.history .story h3{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.timeline li{
+  padding-left:20px;
+  margin:10px 0;
+  font-size:14px;
+}
+
+/* ÁLBUM */
+#album{
+  padding:32px 0;
+}
+
+.gallery-grid{
+  gap:8px;
+  grid-template-columns:repeat(2,1fr);
+}
+
+.gallery-grid a{
+  aspect-ratio:1;
+  overflow:hidden;
+}
+
+.gallery-grid img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* TÍTULOS */
+.section-title,
+.section-titleD,
+.section-titleR{
+  margin:0 0 16px;
+  font-size:clamp(24px,6vw,32px);
+}
+
+.lead{
+  margin:0 auto 20px;
+  font-size:15px;
+}
+
+/* COUNTDOWN */
+.countdown{
+  gap:8px;
+}
+
+.cd-box{
+  width:75px;
+  padding:10px 6px;
+}
+
+.cd-num{
+  font-size:22px;
+}
+
+.cd-label{
+  font-size:11px;
+}
+
+/* DETALLES */
+#detalles{
+  padding:40px 0;
+}
+
+.details-grid{
+  gap:12px;
+}
+
+.detail{
+  padding:14px;
+  margin-bottom:10px;
+}
+
+/* RSVP */
+#rsvp{
+  padding:32px 0;
+}
+
+form{
+  padding:16px;
+}
+
+.grid-2{
+  grid-template-columns:1fr;
+}
+
+/* SAVE THE DATE */
+.save-the-date{
+  font-size:24px;
+  margin-top:16px;
+}
+}
+
+/* ========================================
+ RESPONSIVE - MOBILE PEQUEÑO
+ ======================================== */
+@media (max-width: 480px){
+.hero{
+  min-height:55vh;
+}
+
+section{
+  padding:28px 0;
+}
+
+.history .card img{
+  height:220px;
+}
+
+.gallery-grid{
+  gap:6px;
+}
+
+.couple{
+  font-size:clamp(28px,10vw,50px);
+}
+
+.date{
+  font-size:14px;
+}
+
+.cd-box{
+  width:70px;
+}
+
+.cd-num{
+  font-size:20px;
+}
+}
+
+/* ========================================
+ ACCESIBILIDAD
+ ======================================== */
+@media (prefers-reduced-motion: reduce){
+*{
+  transition:none !important;
+  animation:none !important;
+}
+}
+
+/* ========================================
+   BOTÓN VOLVER ARRIBA
+   ======================================== */
+   .scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
   
-  /* Para pantallas MUY pequeñas (menos de 480px) */
-  @media (max-width: 480px) {
-    .hero {
-      min-height: 55vh;
-    }
-    
-    section {
-      padding: 28px 0;
-    }
-    
-    /* Historia - Imágenes aún más pequeñas */
-    .history .card img {
-      height: 220px;
-    }
-    
-    /* Álbum - Mantener 2 columnas pero con menos espacio */
-    .gallery-grid {
-      gap: 6px;
-    }
-    
-    /* Textos más pequeños */
-    .couple {
-      font-size: clamp(28px, 10vw, 50px);
-    }
-    
-    .date {
-      font-size: 14px;
-    }
-    
-    .cd-box {
-      width: 70px;
-    }
-    
-    .cd-num {
-      font-size: 20px;
+  .scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .scroll-top-btn:hover {
+    background: var(--accent-2);
+    color: var(--primary);
+    transform: translateY(-3px);
+  }
+  
+  .scroll-top-btn:active {
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    .scroll-top-btn {
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
     }
   }
