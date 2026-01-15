@@ -105,7 +105,7 @@
     text-align:center;margin:0 0 28px;
     font-family:"Playfair Display",serif;
     font-size:clamp(24px,4.5vw,40px);
-    color:var(--primary)
+    color:var(--white)
   }
   .lead{max-width:800px;margin:0 auto 22px;color:var(--muted);text-align:center}
   
@@ -166,6 +166,23 @@
   }
   textarea{min-height:110px;resize:vertical}
   .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;align-items:center}
+
+  /* RSVP Section (Fondo con color Deep Ink Blue) */
+#rsvp {
+  background: var(--primary);  /* Fondo Deep Ink Blue */
+  padding: 40px 0;
+}
+
+form {
+  background: var(--white);  /* Mantener el fondo del formulario blanco */
+  color: var(--text);  /* Asegurar que el texto sea oscuro para buen contraste */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
   
   /* Botones (paleta wedding) */
   .btn{
@@ -266,7 +283,7 @@
  /* Fondo de la sección de detalles */
 #detalles {
   position: relative;
-  background-image: url('http://127.0.0.1:5500/assets/album/img_3.jpeg');
+  background-image: url('http://127.0.0.1:5500/assets/album/img_10.jpeg');
   background-size: cover;
   background-position: center;
   padding: 80px 0;
@@ -341,4 +358,93 @@
 .btn.secondary:hover {
   background-color: var(--accent-2);  /* Cambio de color al pasar el cursor */
 }
-  
+
+.section-titleD {
+  color: var(--white); /* Cambiado a blanco */
+  font-family: "Playfair Display", serif;
+  font-size: clamp(24px, 4.5vw, 40px);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.section-titleR {
+  color: var(--white); /* Cambiado a blanco */
+  font-family: "Playfair Display", serif;
+  font-size: clamp(24px, 4.5vw, 40px);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+/* Formulario (RSVP) */
+#rsvp {
+  background: var(--primary);  /* Fondo Deep Ink Blue */
+  padding: 40px 0;
+}
+
+form {
+  background: var(--white);  /* Fondo blanco para el formulario */
+  color: var(--text);  /* Texto en color oscuro */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%; /* Hace que el formulario sea flexible */
+}
+
+/* Campos de entrada */
+input, select, textarea {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid rgba(26, 35, 51, 0.18);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 15px;
+}
+
+/* Botones */
+.btn {
+  width: 100%; /* Hacer que los botones ocupen el 100% del espacio disponible en pantallas pequeñas */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  #rsvp {
+    padding: 20px 0; /* Reducir el espacio en pantallas más pequeñas */
+  }
+
+  form {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .btn {
+    font-size: 16px;  /* Ajustar tamaño de texto de los botones en móviles */
+    padding: 12px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;  /* Hacer que los campos se apilen en pantallas pequeñas */
+    gap: 10px;
+  }
+
+  .section-title {
+    font-size: 28px; /* Reducir el tamaño de la fuente del título */
+    text-align: center;
+  }
+
+  /* Estilos para la respuesta del formulario */
+  .actions {
+    flex-direction: column;  /* Apilar los botones en lugar de alinearlos en una fila */
+  }
+}
+
+/* Para pantallas muy pequeñas (móviles en apaisado) */
+@media (max-width: 480px) {
+  .btn {
+    padding: 10px 16px;  /* Ajustar los botones para pantallas más pequeñas */
+  }
+  input, select, textarea {
+    font-size: 14px;  /* Reducir tamaño de texto en campos de entrada */
+  }
+}
