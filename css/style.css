@@ -138,7 +138,75 @@ color:var(--primary);
 text-transform:uppercase;
 letter-spacing:2px;
 }
-
+/* ========================================
+   BOTONES DEL HERO
+   ======================================== */
+   .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .btn-hero {
+    appearance: none;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-hero.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--primary);
+  }
+  
+  .btn-hero.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-hero.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .btn-hero.secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-hero:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+      margin: 24px auto 0;
+    }
+  
+    .btn-hero {
+      width: 100%;
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+  }
 /* ========================================
  SECCIONES
  ======================================== */
