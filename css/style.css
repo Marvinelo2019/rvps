@@ -476,3 +476,186 @@ form {
     grid-template-columns: repeat(2, 1fr); /* Forzar 2 columnas */
   }
 }
+
+/* ============================================
+   CORRECCIONES PARA MOBILE - HISTORIA Y ÁLBUM
+   ============================================ */
+
+   @media (max-width: 768px) {
+    /* HERO - Reducir altura */
+    .hero {
+      min-height: 60vh;
+    }
+    
+    .hero .content {
+      padding: 24px 16px;
+    }
+    
+    /* SECCIONES - Reducir padding general */
+    section {
+      padding: 40px 0;
+    }
+    
+    /* ========== HISTORIA ========== */
+    .history {
+      padding: 32px 0;
+    }
+    
+    /* Grid en una columna */
+    .history-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 20px; /* Espacio entre los dos grids */
+    }
+    
+    /* Limitar altura de las imágenes */
+    .history .card {
+      overflow: hidden;
+    }
+    
+    .history .card img {
+      width: 100%;
+      height: 280px; /* Altura fija controlada */
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    /* Texto más compacto */
+    .history .card.story {
+      padding: 16px;
+    }
+    
+    .history .story h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    
+    .timeline li {
+      padding-left: 20px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    /* ========== ÁLBUM ========== */
+    #album {
+      padding: 32px 0;
+    }
+    
+    .gallery-grid {
+      gap: 8px;
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en mobile */
+    }
+    
+    .gallery-grid a {
+      aspect-ratio: 1; /* Cuadrados perfectos */
+      overflow: hidden;
+    }
+    
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* ========== TÍTULOS Y ESPACIADOS ========== */
+    .section-title,
+    .section-titleD,
+    .section-titleR {
+      margin: 0 0 16px;
+      font-size: clamp(24px, 6vw, 32px);
+    }
+    
+    .lead {
+      margin: 0 auto 20px;
+      font-size: 15px;
+    }
+    
+    /* ========== COUNTDOWN ========== */
+    .countdown {
+      gap: 8px;
+    }
+    
+    .cd-box {
+      width: 75px;
+      padding: 10px 6px;
+    }
+    
+    .cd-num {
+      font-size: 22px;
+    }
+    
+    .cd-label {
+      font-size: 11px;
+    }
+    
+    /* ========== DETALLES ========== */
+    #detalles {
+      padding: 40px 0;
+    }
+    
+    .details-grid {
+      gap: 12px;
+    }
+    
+    .detail {
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    /* ========== RSVP ========== */
+    #rsvp {
+      padding: 32px 0;
+    }
+    
+    form {
+      padding: 16px;
+    }
+    
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    
+    /* ========== SAVE THE DATE ========== */
+    .save-the-date {
+      font-size: 24px;
+      margin-top: 16px;
+    }
+  }
+  
+  /* Para pantallas MUY pequeñas (menos de 480px) */
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 55vh;
+    }
+    
+    section {
+      padding: 28px 0;
+    }
+    
+    /* Historia - Imágenes aún más pequeñas */
+    .history .card img {
+      height: 220px;
+    }
+    
+    /* Álbum - Mantener 2 columnas pero con menos espacio */
+    .gallery-grid {
+      gap: 6px;
+    }
+    
+    /* Textos más pequeños */
+    .couple {
+      font-size: clamp(28px, 10vw, 50px);
+    }
+    
+    .date {
+      font-size: 14px;
+    }
+    
+    .cd-box {
+      width: 70px;
+    }
+    
+    .cd-num {
+      font-size: 20px;
+    }
+  }
