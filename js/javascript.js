@@ -8,7 +8,7 @@ const MAPS_URL = "https://maps.app.goo.gl/pm6p61FHQidm5iiN7";
 const MAP_EMBED_SRC = "https://maps.google.com/maps?q=Club+Campestre+Pinula&z=15&output=embed";
 
 // Endpoint Google Apps Script o Google Forms:
-const RSVP_ENDPOINT = "https://script.google.com/macros/s/XXXXXXXX/exec";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxFTGCXOg-ouvJHpoIy-EHp7E060Mw9VBmDBin3owWCO1dcLnY_2YsLAIEK1srGwHQLtQ/exec";
 
 const EVENT_TITLE = "Boda — Ana & José";
 const EVENT_LOCATION = "Hacienda Nueva Country Club San José Pinula, Guatemala";
@@ -98,50 +98,6 @@ document.getElementById('addToCalendarBtn').addEventListener('click', ()=>{
   setTimeout(()=>URL.revokeObjectURL(url), 1500);
 });
 
-// Envío RSVP
-const form = document.getElementById('rsvpForm');
-const status = document.getElementById('status');
-const submitBtn = document.getElementById('submitBtn');
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  status.textContent = "";
-  if(!form.checkValidity()){
-    status.textContent = "Por favor completa los campos obligatorios.";
-    form.reportValidity();
-    return;
-  }
-  submitBtn.disabled = true; submitBtn.textContent = "Enviando…";
-
-  const data = new URLSearchParams({
-    nombre: form.nombre.value.trim(),
-    email: form.email.value.trim(),
-    telefono: form.telefono.value.trim(),
-    invitados: form.invitados.value,
-    comentario: form.comentario.value.trim(),
-    confirmacion: form.confirmacion.value
-  });
-
-  try{
-    const res = await fetch(RSVP_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-      body: data.toString(),
-      mode: "cors"
-    });
-    if(res.ok){
-      status.textContent = "¡Gracias! Tu confirmación fue recibida.";
-      form.reset();
-    }else{
-      status.textContent = "Hubo un problema al enviar. Intenta nuevamente.";
-    }
-  }catch(err){
-    console.error(err);
-    status.textContent = "No se pudo conectar. Revisa tu internet o el endpoint.";
-  }finally{
-    submitBtn.disabled = false; submitBtn.textContent = "Enviar confirmación";
-  }
-});
-
 function copyToClipboard() {
 const accountNumber = document.getElementById("account-number").textContent;
 navigator.clipboard.writeText(accountNumber).then(function() {
@@ -206,4 +162,117 @@ const current = parseInt(invitadosInput.value);
 if (current < 10) {
 invitadosInput.value = current + 1;
 }
+});
+
+// ====== ENVÍO RSVP ======
+const form = document.getElementById('rsvpForm');
+const status = document.getElementById('status');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  status.textContent = "";
+  
+  console.log('Formulario enviado'); // Debug
+  
+  // Validar que se haya seleccionado una opción de confirmación
+  const confirmacion = document.querySelector('input[name="confirmacion"]:checked');
+  if (!confirmacion) {
+    status.textContent = "Por favor selecciona si asistirás o no.";
+    status.style.background = "rgba(220, 53, 69, 0.1)";
+    status.style.color = "#dc3545";
+    return;
+  }
+  
+  if (!form.checkValidity()) {
+    status.textContent = "Por favor completa los campos obligatorios.";
+    status.style.background = "rgba(220, 53, 69, 0.1)";
+    status.style.color = "#dc3545";
+    form.reportValidity();
+    return;
+  }
+  
+  submitBtn.disabled = true;
+  const originalHTML = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<span>Enviando...</span>';
+
+  // DEBUGGING: Ver qué valores se están capturando
+  const formData = {
+    nombre: form.nombre.value.trim(),
+    email: form.email.value.trim(),
+    telefono: form.telefono.value.trim(),
+    invitados: form.invitados.value,
+    comentario: form.comentario.value.trim(),
+    confirmacion: confirmacion.value
+  };
+  
+  console.log('====== DATOS DEL FORMULARIO ======');
+  console.log('Nombre:', formData.nombre);
+  console.log('Email:', formData.email);
+  console.log('Teléfono:', formData.telefono);
+  console.log('Invitados:', formData.invitados);
+  console.log('Comentario:', formData.comentario);
+  console.log('Confirmación:', formData.confirmacion);
+  console.log('==================================');
+
+  const data = new URLSearchParams(formData);
+
+  try {
+    console.log('Enviando a:', RSVP_ENDPOINT); // Debug
+    
+    const res = await fetch(RSVP_ENDPOINT, {
+      method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: data.toString(),
+    redirect: 'follow'
+    });
+    
+    console.log('Respuesta recibida:', res); // Debug
+    
+    // Intentar leer la respuesta
+    try {
+      const responseText = await res.text();
+      console.log('Contenido de respuesta:', responseText); // Debug
+      
+      const jsonResponse = JSON.parse(responseText);
+      if (jsonResponse.result === 'success') {
+        status.textContent = "¡Gracias! Tu confirmación fue recibida.";
+        status.style.background = "rgba(40, 167, 69, 0.1)";
+        status.style.color = "#28a745";
+        form.reset();
+        
+        // Ocultar campos condicionales
+        const guestCountGroup = document.getElementById('guestCountGroup');
+        const commentGroup = document.getElementById('commentGroup');
+        if (guestCountGroup) guestCountGroup.style.display = 'none';
+        if (commentGroup) commentGroup.style.display = 'none';
+      } else {
+        throw new Error(jsonResponse.error || 'Error desconocido');
+      }
+    } catch (parseError) {
+      // Si no podemos parsear, pero la petición se envió, asumimos éxito
+      console.log('No se pudo parsear respuesta, asumiendo éxito'); // Debug
+      status.textContent = "¡Gracias! Tu confirmación fue recibida.";
+      status.style.background = "rgba(40, 167, 69, 0.1)";
+      status.style.color = "#28a745";
+      form.reset();
+      
+      // Ocultar campos condicionales
+      const guestCountGroup = document.getElementById('guestCountGroup');
+      const commentGroup = document.getElementById('commentGroup');
+      if (guestCountGroup) guestCountGroup.style.display = 'none';
+      if (commentGroup) commentGroup.style.display = 'none';
+    }
+    
+  } catch(err) {
+    console.error('Error completo:', err); // Debug
+    status.textContent = "Hubo un problema al enviar. Error: " + err.message;
+    status.style.background = "rgba(220, 53, 69, 0.1)";
+    status.style.color = "#dc3545";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalHTML;
+  }
 });
