@@ -208,8 +208,6 @@ if (form && status && submitBtn) {
     // Capturar datos
     const formData = {
       nombre: form.nombre.value.trim(),
-      email: form.email.value.trim(),
-      telefono: form.telefono.value.trim(),
       invitados: form.invitados.value,
       comentario: form.comentario.value.trim(),
       confirmacion: confirmacion.value
@@ -217,8 +215,6 @@ if (form && status && submitBtn) {
     
     console.log('====== DATOS DEL FORMULARIO ======');
     console.log('Nombre:', formData.nombre);
-    console.log('Email:', formData.email);
-    console.log('Teléfono:', formData.telefono);
     console.log('Invitados:', formData.invitados);
     console.log('Comentario:', formData.comentario);
     console.log('Confirmación:', formData.confirmacion);
@@ -230,8 +226,6 @@ if (form && status && submitBtn) {
       // Crear FormData
       const formDataToSend = new FormData();
       formDataToSend.append('nombre', formData.nombre);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('telefono', formData.telefono);
       formDataToSend.append('invitados', formData.invitados);
       formDataToSend.append('comentario', formData.comentario);
       formDataToSend.append('confirmacion', formData.confirmacion);
