@@ -20,11 +20,11 @@ html {
 }
 *{box-sizing:border-box}
 html,body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-line-height:1.6
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.6
 }
 img{max-width:100%;height:auto;display:block}
 a{color:var(--primary);text-decoration:none}
@@ -40,7 +40,7 @@ backdrop-filter:saturate(120%) blur(8px);
 border-bottom:1px solid rgba(26,35,51,.08)
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-family:"Playfair Display",serif;font-weight:600;font-size:20px;letter-spacing:.5px}
+.brand{font-family:'Montserrat',sans-serif; font-weight:600;...}
 nav a{margin-left:16px;padding:8px 12px;border-radius:999px;transition:.25s ease}
 nav a:hover{background:var(--white);box-shadow:var(--shadow)}
 
@@ -269,7 +269,8 @@ section{padding:72px 0}
 .section-title{
 text-align:center;
 margin:0 0 28px;
-font-family:"Playfair Display",serif;
+font-family:'Montserrat',sans-serif; 
+font-weight:600;
 font-size:clamp(24px,4.5vw,40px);
 color:var(--primary);
 }
@@ -546,6 +547,105 @@ font-size:18px;
   max-width: 600px;
   margin: 0 auto;
   padding: 18px;
+}
+/* ========================================
+   BANNER DE DETALLES DEL EVENTO
+   ======================================== */
+.event-details-banner {
+  padding: 60px 0;
+  background: var(--bg);
+}
+
+.banner-image {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .event-details-banner {
+    padding: 40px 0;
+  }
+  
+  .banner-image {
+    border-radius: var(--radius-sm);
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-details-banner {
+    padding: 30px 0;
+  }
+}
+/* ========================================
+   SECCIÓN DEL MAPA
+   ======================================== */
+.map-section {
+  padding: 72px 0;
+  background: var(--bg-2);
+}
+
+.map-section .section-title {
+  color: var(--primary);
+}
+
+.map {
+  margin: 32px auto;
+  border: 0;
+  width: 100%;
+  max-width: 1000px;
+  height: 450px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: block;
+}
+
+.map-actions {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.map-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+}
+
+.map-actions svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .map-section {
+    padding: 50px 0;
+  }
+  
+  .map {
+    height: 350px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .map {
+    height: 300px;
+  }
+  
+  .map-actions .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
 }
 /* ========================================
    RSVP MODERNO
@@ -993,9 +1093,7 @@ section{
   gap:6px;
 }
 
-.couple{
-  font-size:clamp(28px,10vw,50px);
-}
+.couple{font-family:'Montserrat',sans-serif; font-weight:700;...}
 
 .date{
   font-size:14px;
