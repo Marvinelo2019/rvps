@@ -279,7 +279,7 @@ color:var(--primary);
 .section-titleR{
 text-align:center;
 margin:0 0 28px;
-font-family:"Playfair Display",serif;
+font-family:"Montserrat",serif;
 font-size:clamp(24px,4.5vw,40px);
 color:var(--white);
 }
@@ -566,23 +566,38 @@ font-size:18px;
   box-shadow: var(--shadow);
 }
 
-/* Responsive */
+/* Responsive - IMAGEN MÁS GRANDE EN MOBILE */
 @media (max-width: 768px) {
   .event-details-banner {
-    padding: 40px 0;
+    padding: 30px 0; /* Menos padding para aprovechar espacio */
+  }
+  
+  .event-details-banner .container {
+    padding: 0 10px; /* Menos padding lateral */
   }
   
   .banner-image {
     border-radius: var(--radius-sm);
-    max-width: 100%;
+    max-width: 100%; /* Ocupa casi todo el ancho */
+    width: calc(100% - 20px); /* Solo deja 10px de margen a cada lado */
   }
 }
 
 @media (max-width: 480px) {
   .event-details-banner {
-    padding: 30px 0;
+    padding: 20px 0;
+  }
+  
+  .event-details-banner .container {
+    padding: 0 5px; /* Aún menos padding en pantallas pequeñas */
+  }
+  
+  .banner-image {
+    width: calc(100% - 10px); /* Solo 5px de margen a cada lado */
+    border-radius: 8px;
   }
 }
+
 /* ========================================
    SECCIÓN DEL MAPA
    ======================================== */
@@ -1093,7 +1108,7 @@ section{
   gap:6px;
 }
 
-.couple{font-family:'Montserrat',sans-serif; font-weight:700;...}
+.couple{font-family:'Montserrat',sans-serif; font-weight:700;}
 
 .date{
   font-size:14px;
@@ -1167,3 +1182,4 @@ section{
       height: 45px;
     }
   }
+}
