@@ -2,12 +2,28 @@
 // Fecha/hora exacta (ajusta la hora real si difiere). Viernes 1 mayo 2026, 5:00pm (hora local)
 const WEDDING_ISO = "2026-05-01T17:00:00";
 
-// Maps del Club Campestre Pinula (ajusta con tu link real)
-const MAPS_URL = "https://maps.app.goo.gl/pm6p61FHQidm5iiN7"; 
-const MAP_EMBED_SRC = "https://maps.google.com/maps?q=Club+Campestre+Pinula&z=15&output=embed";
+// Google Maps embed
+const MAP_EMBED_SRC =
+  "https://maps.google.com/maps?q=Hacienda%20Nueva%20Country%20Club%20San%20Jose%20Pinula&z=15&output=embed";
 
-// Endpoint Google Apps Script o Google Forms:
-const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxFTGCXOg-ouvJHpoIy-EHp7E060Mw9VBmDBin3owWCO1dcLnY_2YsLAIEK1srGwHQLtQ/exec";
+// Waze navegación directa
+const WAZE_URL =
+  "https://waze.com/ul?ll=14.4789,-90.3973&navigate=yes";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const mapEmbed = document.getElementById("mapEmbed");
+  const mapLink = document.getElementById("mapLink");
+
+  if (mapEmbed) {
+    mapEmbed.src = MAP_EMBED_SRC;
+  }
+
+  if (mapLink) {
+    mapLink.href = WAZE_URL;
+  }
+
+});
 
 const EVENT_TITLE = "Boda — Ana & José";
 const EVENT_LOCATION = "Hacienda Nueva Country Club San José Pinula, Guatemala";
